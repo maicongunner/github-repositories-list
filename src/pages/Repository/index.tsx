@@ -70,7 +70,7 @@ const Repository: React.FC = () => {
                             <p>{repository.description}</p>
                         </div>
                     </header>
-                    <ul>
+                    <ul data-testid="repository-numbers">
                         <li>
                             <strong>{repository.stargazers_count}</strong>
                             <span>Stars</span>
@@ -87,7 +87,7 @@ const Repository: React.FC = () => {
                 </RepositoryInfo>
             )}
 
-            <Issues>
+            <Issues data-testid="repository-issues-list">
                 {issues.map(issue => (
                     <a key={issue.id} href={issue.html_url} target="_blank">
                         <div>

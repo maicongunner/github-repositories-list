@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Dashboard from '../../pages/Dashboard';
 import MockAdapter from 'axios-mock-adapter';
 import api from '../../services/api';
 
-import { render, waitFor, fireEvent } from '@testing-library/react';
+import { render, waitFor, fireEvent, cleanup } from '@testing-library/react';
 
 const apiMock = new MockAdapter(api);
 
@@ -32,7 +32,7 @@ describe('Tests for Dashboard Page', () => {
 
         const dataResponse = {
             full_name: 'Rocketseat/unform',
-            description: 'Rocketseat/unform',
+            description: 'Easy peasy highly scalable ReactJS & React Native forms!',
             owner: {
                 login: 'Rocketseat',
                 avatar_url: 'https://avatars0.githubusercontent.com/u/28929274?v=4',
@@ -42,7 +42,8 @@ describe('Tests for Dashboard Page', () => {
         await waitFor(() => {
             apiMock.onGet(`repos/${newRepo}`).reply(200, dataResponse);
             expect(listRepositories).toBeDefined();
-            expect(inputElement).toBeEmpty();
+            expect(listRepositories).toContainElement(getByText('Rocketseat/unform'));
+            expect(inputElement).toHaveValue('');
         });
     });
 
@@ -70,6 +71,53 @@ describe('Tests for Dashboard Page', () => {
                 'Erro na busca por este repositório',
             );
         });
+
+    });
+
+    it('Should add new repository with exists on the list repositories', async () => {
+        const { getByTestId, getByText } = render(<Dashboard />);
+
+        let inputElement = await waitFor(() => getByTestId('form-field'));
+        const buttonElement = await waitFor(() => getByText('Pesquisar'));
+        let listRepositories = await waitFor(() =>
+            getByTestId('list-repositories'),
+        );
+
+        const newRepo = 'rocketseat/unform';
+
+        // add repository
+        fireEvent.change(inputElement, { target: { value: newRepo } });
+        expect(inputElement).toHaveValue(newRepo);
+        fireEvent.click(buttonElement);
+
+        const dataResponse = {
+            full_name: 'Rocketseat/unform',
+            description: 'Easy peasy highly scalable ReactJS & React Native forms!',
+            owner: {
+                login: 'Rocketseat',
+                avatar_url: 'https://avatars0.githubusercontent.com/u/28929274?v=4',
+            }
+        };
+
+        await waitFor(() => {
+            apiMock.onGet(`repos/${newRepo}`).reply(200, dataResponse);
+            expect(listRepositories).toBeDefined();
+            expect(listRepositories).toContainElement(getByText('Rocketseat/unform'));
+            expect(inputElement).toBeEmpty();
+        });
+
+        // add repository second time
+        fireEvent.change(inputElement, { target: { value: newRepo } });
+        expect(inputElement).toHaveValue(newRepo);
+        fireEvent.click(buttonElement);
+
+        await waitFor(() => {
+            const messageErrorElement = getByTestId('field-error-message');
+            expect(messageErrorElement).toHaveTextContent(
+                'Este repositório já foi adicionado a lista',
+            );
+        });
+
 
     });
 
