@@ -21,10 +21,16 @@ In this project we developed a simple interface in ReactJS to add GitHub reposit
    $ git clone https://github.com/maicongunner/github-repositories-list
   
    # Install the dependencies:
-   $ npm
+   $ yarn
 
    # Run the application:
-   $ npm start
+   $ yarn start
+   
+   # Run tests:
+   $ yarn test
+   
+   # Run tests with coverage:
+   $ yarn test:coverage
 ```
 
 Made with ❤️ by Maicon Domingues 👋🏻 [Get in touch!](https://github.com/maicongunner)
