@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
-import Dashboard from '../../pages/Dashboard';
+import React from 'react';
 import MockAdapter from 'axios-mock-adapter';
 import api from '../../services/api';
+import { render, waitFor, fireEvent } from '@testing-library/react';
 
-import { render, waitFor, fireEvent, cleanup } from '@testing-library/react';
+import Dashboard from '../../pages/Dashboard';
 
 const apiMock = new MockAdapter(api);
 

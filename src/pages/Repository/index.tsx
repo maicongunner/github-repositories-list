@@ -59,7 +59,7 @@ const Repository: React.FC = () => {
             </Header>
 
             {repository && (
-                <RepositoryInfo>
+                <RepositoryInfo data-testid="repository-info">
                     <header>
                         <img
                             src={repository.owner.avatar_url}
