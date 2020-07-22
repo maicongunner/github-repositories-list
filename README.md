@@ -18,8 +18,7 @@ In this project we developed a simple interface in ReactJS to add GitHub reposit
 ## :rocket: Starting
 ``` bash    
    # Clone the project:
-   $ git clone 
-   https://github.com/maicongunner/github-repositories-list
+   $ git clone https://github.com/maicongunner/github-repositories-list
   
    # Install the dependencies:
    $ npm
