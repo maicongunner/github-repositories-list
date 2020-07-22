@@ -16,16 +16,11 @@ In this project we developed a simple interface in ReactJS to add GitHub reposit
 - Have [**Git**](https://git-scm.com/) to clone the project.
 
 ## :rocket: Starting
-``` bash
-  # Clone the project:
-  $ git clone https://github.com/maicongunner/github-repositories-list
-```
-
-## :computer: Starting project
-``` bash
-   # Enter the front-end directory:
-   $ cd web
-
+``` bash    
+   # Clone the project:
+   $ git clone 
+   https://github.com/maicongunner/github-repositories-list
+  
    # Install the dependencies:
    $ npm
 
