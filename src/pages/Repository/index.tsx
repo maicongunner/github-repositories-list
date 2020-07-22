@@ -70,7 +70,7 @@ const Repository: React.FC = () => {
                             <p>{repository.description}</p>
                         </div>
                     </header>
-                    <ul data-testid="repository-numbers">
+                    <ul>
                         <li>
                             <strong>{repository.stargazers_count}</strong>
                             <span>Stars</span>

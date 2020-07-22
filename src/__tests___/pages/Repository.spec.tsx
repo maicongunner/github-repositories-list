@@ -48,9 +48,12 @@ describe('Tests for Repository Page', () => {
         const { getByTestId } = render(<Repository />);
 
         await waitFor(() => {
+            const repositoryInfo = getByTestId('repository-info');
             const repositoryIssuesList = getByTestId('repository-issues-list');
+
+            expect(repositoryInfo).toBeTruthy();
             expect(repositoryIssuesList).toBeTruthy();
-        })
+        });
 
     });
 });
